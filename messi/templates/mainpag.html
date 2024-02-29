@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Navbar with Cards</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+      background-image: url('https://img.freepik.com/free-vector/white-technology-background-concept_23-2148403398.jpg?w=1380&t=st=1709222475~exp=1709223075~hmac=a3a8a905e26a59845ccf90d8a498e969568bca0dcc0c3a938ff694a221ab9711');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+            padding-top: 70px; /* Adjust according to your navbar height */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Your Brand</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url '' %}" style="font-size: 24px;">HOME</a>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}" style="font-size: 24px;">ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}" style="font-size: 24px;">CONTACT</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container mt-5">
+        <h2 class="mb-4">Contacts</h2>
+        <div class="row">
+            <!-- Loop through contacts and generate card for each contact -->
+            {% for contact in contacts %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <!-- Check if contact has an image -->
+                    {% if contact.iimage %}
+                    <img src="{{ contact.iimage.url }}" alt="Contact Image" class="card-img-top">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ contact.iname }}</h5>
+                        <p class="card-text">{{ contact.imessage }}</p>
+                        <p class="card-text">Price: ${{ contact.iprice }}</p>
+                        <!-- Add more fields as needed -->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
